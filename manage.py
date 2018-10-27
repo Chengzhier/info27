@@ -5,6 +5,8 @@ from flask.ext.sqlalchemy import SQLAlchemy
 #可以用来制定session的保存位置
 from flask_session import Session
 from flask_script import Manager
+from flask_migrate import Migrate,MigrateCommand
+
 
 class Config(object):
     """项目配置"""
@@ -47,8 +49,11 @@ CSRFProtect(app)
 #设置session保存指定位置
 Session(app)
 
-manger = Manager(app)
-
+manager = Manager(app)
+#將app于db关联
+Migrate(app, db)
+#将迁移命令添加到manager中
+manager.add_command('db', MigrateCommand)
 
 @app.route('/')
 def index():
@@ -57,6 +62,6 @@ def index():
 
 
 if __name__ == '__main__':
-    manger.run()
+    manager.run()
 
 
