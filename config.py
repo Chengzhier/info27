@@ -38,7 +38,7 @@ class ProductionConfig(Config):
 class TestingConfig(Config):
     """单元测试环境下的配置"""
     DEBUG = True
-    TESEING = True
+    TESTING = True
 
 
 config = {
