@@ -25,3 +25,24 @@ class Config(object):
     PERMANENT_SESSION_LIFETIME = 86400 * 2
 
 
+class Development(Config):
+    """开发环境下的配置"""
+    DEBUG = True
+
+
+class ProductionConfig(Config):
+    """生成环境下的配置"""
+    DEBUG = False
+
+
+class TestingConfig(Config):
+    """单元测试环境下的配置"""
+    DEBUG = True
+    TESEING = True
+
+
+config = {
+    "development": Development,
+    "production": ProductionConfig,
+    "testing": TestingConfig
+}
