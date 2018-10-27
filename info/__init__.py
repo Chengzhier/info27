@@ -10,6 +10,8 @@ from config import config
 
 # 初始化数据库
 # 在Flask很多扩展里面都可以先初始化扩展的对象，然后再去调用init_app方法去初始化
+from info.modules.index import index_blu
+
 db = SQLAlchemy()
 
 
@@ -42,4 +44,6 @@ def create_app(config_name):
     # 设置session保存指定位置
     Session(app)
 
+    # 注册蓝图
+    app.register_blueprint(index_blu)
     return app
